@@ -7,7 +7,7 @@
 # package name fragment
 %global pkgname h11
 
-%bcond_without tests
+%bcond_with tests
 
 
 Name:           python-%{pkgname}
