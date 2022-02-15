@@ -1,22 +1,14 @@
-# what it's called on pypi
-%global srcname h11
-# what it's imported as
-%global libname h11
-# name of egg info directory
-%global eggname h11
-# package name fragment
-%global pkgname h11
+%global module h11
 
 %bcond_with tests
 
-
-Name:           python-%{pkgname}
-Version:        0.9.0
+Name:           python-%{module}
+Version:        0.13.0
 Release:        1
 Summary:        A pure-Python, bring-your-own-I/O implementation of HTTP/1.1
 License:        MIT
 URL:            https://github.com/python-hyper/h11
-Source0:        https://github.com/python-hyper/h11/archive/v%{version}/%{pkgname}-%{version}.tar.gz
+Source0:        https://files.pythonhosted.org/packages/source/h/%{module}/%{module}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  pkgconfig(python)
@@ -24,8 +16,6 @@ BuildRequires:  python3dist(setuptools)
 %if %{with tests}
 BuildRequires:  python3dist(pytest)
 %endif
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{pkgname}}
-
 
 %description
 This is a little HTTP/1.1 library written from scratch in Python, heavily\
@@ -38,9 +28,16 @@ programs that speak HTTP, not something that could directly replace requests or\
 twisted.web or whatever.  But h11 makes it much easier to implement something\
 like requests or twisted.web.
 
+%files
+%license LICENSE.txt
+%doc README.rst
+%{python_sitelib}/%{module}
+%{python_sitelib}/%{module}-%{version}-py%{python_version}.egg-info
+
+#----------------------------------------------------------------------------
 
 %prep
-%autosetup -n %{srcname}-%{version}
+%autosetup -n %{module}-%{version}
 rm -rf %{eggname}.egg-info
 
 %build
@@ -53,10 +50,3 @@ rm -rf %{eggname}.egg-info
 %check
 py.test-%{python_version} --verbose
 %endif
-
-
-%files
-%license LICENSE.txt
-%doc README.rst
-%{python_sitelib}/%{libname}
-%{python_sitelib}/%{eggname}-%{version}-py%{python_version}.egg-info
