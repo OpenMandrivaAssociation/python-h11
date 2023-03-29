@@ -2,13 +2,13 @@
 
 %bcond_with tests
 
-Name:           python-%{module}
-Version:        0.13.0
-Release:        2
+Name:           python-h11
+Version:        0.14.0
+Release:        1
 Summary:        A pure-Python, bring-your-own-I/O implementation of HTTP/1.1
 License:        MIT
 URL:            https://github.com/python-hyper/h11
-Source0:        https://files.pythonhosted.org/packages/source/h/%{module}/%{module}-%{version}.tar.gz
+Source0:        https://files.pythonhosted.org/packages/source/h/h11/h11-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  pkgconfig(python)
@@ -31,14 +31,14 @@ like requests or twisted.web.
 %files
 %license LICENSE.txt
 %doc README.rst
-%{python_sitelib}/%{module}
-%{python_sitelib}/%{module}-%{version}-py%{python_version}.egg-info
+%{python_sitelib}/h11
+%{python_sitelib}/h11-%{version}*-info
 
 #----------------------------------------------------------------------------
 
 %prep
-%autosetup -n %{module}-%{version}
-rm -rf %{eggname}.egg-info
+%autosetup -n h11-%{version}
+rm -rf h11.egg-info
 
 %build
 %py_build
@@ -50,3 +50,4 @@ rm -rf %{eggname}.egg-info
 %check
 py.test-%{python_version} --verbose
 %endif
+
