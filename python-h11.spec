@@ -4,18 +4,18 @@
 
 Name:           python-h11
 Version:        0.16.0
-Release:        1
+Release:        2
 Summary:        A pure-Python, bring-your-own-I/O implementation of HTTP/1.1
 License:        MIT
 URL:            https://github.com/python-hyper/h11
 Source0:        https://files.pythonhosted.org/packages/source/h/h11/h11-%{version}.tar.gz
 BuildArch:      noarch
 
-BuildRequires:  pkgconfig(python)
-BuildRequires:  python3dist(setuptools)
-BuildRequires:  python3dist(pip)
+BuildSystem:	python
+BuildRequires:  python%{pyver}dist(setuptools)
+BuildRequires:  python%{pyver}dist(pip)
 %if %{with tests}
-BuildRequires:  python3dist(pytest)
+BuildRequires:  python%{pyver}dist(pytest)
 %endif
 
 %description
@@ -29,26 +29,13 @@ programs that speak HTTP, not something that could directly replace requests or\
 twisted.web or whatever.  But h11 makes it much easier to implement something\
 like requests or twisted.web.
 
-%files
-%license LICENSE.txt
-%doc README.rst
-%{python_sitelib}/h11
-%{python_sitelib}/h11-%{version}*-info
-
-#----------------------------------------------------------------------------
-
-%prep
-%autosetup -n h11-%{version}
-rm -rf h11.egg-info
-
-%build
-%py_build
-
-%install
-%py_install
-
 %if %{with tests}
 %check
 py.test-%{python_version} --verbose
 %endif
 
+%files
+%license LICENSE.txt
+%doc README.rst
+%{python_sitelib}/h11
+%{python_sitelib}/h11-%{version}*-info
