@@ -3,8 +3,8 @@
 %bcond_with tests
 
 Name:           python-h11
-Version:        0.14.0
-Release:        3
+Version:        0.16.0
+Release:        1
 Summary:        A pure-Python, bring-your-own-I/O implementation of HTTP/1.1
 License:        MIT
 URL:            https://github.com/python-hyper/h11
@@ -13,6 +13,7 @@ BuildArch:      noarch
 
 BuildRequires:  pkgconfig(python)
 BuildRequires:  python3dist(setuptools)
+BuildRequires:  python3dist(pip)
 %if %{with tests}
 BuildRequires:  python3dist(pytest)
 %endif
