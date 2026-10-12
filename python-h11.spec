@@ -4,9 +4,10 @@
 
 Name:           python-h11
 Version:        0.16.0
-Release:        3
+Release:        4
 Summary:        A pure-Python, bring-your-own-I/O implementation of HTTP/1.1
 License:        MIT
+Group:        Development/Python
 URL:            https://github.com/python-hyper/h11
 Source0:        https://files.pythonhosted.org/packages/source/h/h11/h11-%{version}.tar.gz
 BuildArch:      noarch
